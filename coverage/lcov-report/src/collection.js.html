@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/collection.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/collection.js</span></h1>
+    <h2>
+        Statements: <span class="metric">83.87% <small>(26 / 31)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">66.67% <small>(8 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">80% <small>(4 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">83.87% <small>(26 / 31)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; collection.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var BPromise = require("bluebird");
+var R        = require("ramda");
+&nbsp;
+var genericMethods = require("./methods.js");
+&nbsp;
+var Collection = <span class="fstat-no" title="function not covered" >function (mw, name) {</span>
+<span class="cstat-no" title="statement not covered" >    this.mw = mw;</span>
+<span class="cstat-no" title="statement not covered" >    this.name = name;</span>
+<span class="cstat-no" title="statement not covered" >    this.validationRules = {</span>
+        insert: [],
+        update: [],
+        remove: []
+    };
+<span class="cstat-no" title="statement not covered" >    this.db = BPromise.promisifyAll(</span>
+        mw.db.collection(name)
+    );
+<span class="cstat-no" title="statement not covered" >    this.attachMethods();</span>
+};
+&nbsp;
+/*
+*   Attach methods to collection's mw instance
+*/
+Collection.prototype.attachMethods = function attachMethods () {
+    var methods = {};
+    methods["/" + this.name + "/insert"] = R.partial(genericMethods.insert, this);
+    methods["/" + this.name + "/update"] = R.partial(genericMethods.update, this);
+    methods["/" + this.name + "/remove"] = R.partial(genericMethods.remove, this);
+    this.mw.methods(methods);
+};
+&nbsp;
+/*
+*   Validation rules can either:
+*
+*   - throw or return a value (which is ignored)
+*   - return a promise which either gets fullfilled (with a value which is
+*     ignored) or rejected
+*
+*   If a rule throws, or returns a promise which gets rejected, the operation is
+*   aborted. If the error thrown (or passed as rejection value of the promise)
+*   is an instance of a MW.Error, then it'll get sent back to the client.
+*   Otherwise, a generic "500 Internal server error" error will be sent.
+*
+*/
+Collection.prototype.addValidationRules = function addValidationRules (ruleSet) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (ruleSet.insert) {
+        this.validationRules.insert.push(ruleSet.insert);
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (ruleSet.update) {
+        this.validationRules.update.push(ruleSet.update);
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (ruleSet.remove) {
+        this.validationRules.remove.push(ruleSet.remove);
+    }
+};
+Collection.prototype.runValidationRules = function runValidationRules (context, method, oldDocument, newDocument) {
+    return BPromise.map(this.validationRules[method], function (rule) {
+        if (method === "insert") {
+            return rule.call(context, R.clone(newDocument));
+        }
+        if (method === "update") {
+            return rule.call(context, R.clone(oldDocument), R.clone(newDocument));
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (method === "remove") {
+            return rule.call(context, R.clone(oldDocument));
+        }
+    });
+};
+&nbsp;
+module.exports = Collection;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 19 2015 23:43:40 GMT+0200 (CEST)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
