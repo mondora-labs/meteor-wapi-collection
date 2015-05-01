@@ -1,13 +1,17 @@
 {
   "name": "meteor-wapi-collection",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Easy CUD (no R) collections for meteor-wapi",
   "main": "src/collection.js",
   "scripts": {
     "dev": "node_modules/.bin/gulp",
     "test": "NODE_PATH=./src/ node_modules/.bin/mocha -R spec test/unit/**/*.js test/integration/*.js",
     "unit-tests": "NODE_PATH=./src/ node_modules/.bin/mocha -R spec test/unit/**/*.js",
     "integration-tests": "node_modules/.bin/mocha -R spec test/integration/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mondora-labs/meteor-wapi-collection.git"
   },
   "author": "Paolo Scanferla <paolo.scanferla@mondora.com>",
   "license": "MIT",
