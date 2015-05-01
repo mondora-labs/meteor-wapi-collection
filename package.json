@@ -1,6 +1,6 @@
 {
   "name": "meteor-wapi-collection",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Easy CUD (no R) collections for meteor-wapi",
   "main": "src/collection.js",
   "scripts": {
