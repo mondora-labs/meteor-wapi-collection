@@ -44,7 +44,7 @@ gulp.task("jscs", function () {
     */
     mkdirp.sync("./builds/jscs/");
     try {
-        sh("jscs ../../src/ --reporter ../../node_modules/jscs-html-reporter/jscs-html-reporter.js", {
+        sh("../../node_modules/.bin/jscs ../../src/ --reporter ../../node_modules/jscs-html-reporter/jscs-html-reporter.js", {
             cwd: "./builds/jscs/"
         });
     } catch (ignore) {
