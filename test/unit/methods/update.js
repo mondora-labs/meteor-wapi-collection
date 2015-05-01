@@ -7,7 +7,7 @@ var sinon    = require("sinon");
 
 var methods = require("methods");
 
-describe("The update method", function () {
+describe("Unit suite - The update method", function () {
 
     it("should return a promise", function () {
         var promise = methods.update();
@@ -18,11 +18,16 @@ describe("The update method", function () {
     it("should run validation update rules", function () {
         var collection = {
             runValidationRules: sinon.spy(),
-            db: {
+            dbCollection: {
                 findOne: R.always(BPromise.resolve({}))
             }
         };
-        return methods.update(collection, "", [])
+        var patches = [{
+            op: "add",
+            path: "/prop",
+            value: "value"
+        }];
+        return methods.update(collection, "", patches)
             .catch(R.always(null))
             .then(function () {
                 collection.runValidationRules.called.should.equal(true);
@@ -30,10 +35,10 @@ describe("The update method", function () {
             });
     });
 
-    it("should call db.update with the updated document", function () {
+    it("should call dbCollection.update with the updated document", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 findOne: R.always(BPromise.resolve({_id: "_id"})),
                 update: sinon.stub().returns(BPromise.resolve())
             }
@@ -41,11 +46,11 @@ describe("The update method", function () {
         var patches = jp.compare({}, {a: 1});
         return methods.update(collection, "_id", patches)
             .then(function () {
-                collection.db.update.called.should.equal(true);
-                collection.db.update.firstCall.args[0].should.eql({
+                collection.dbCollection.update.called.should.equal(true);
+                collection.dbCollection.update.firstCall.args[0].should.eql({
                     _id: "_id"
                 });
-                collection.db.update.firstCall.args[1].should.eql({
+                collection.dbCollection.update.firstCall.args[1].should.eql({
                     $set: {
                         a: 1
                     }
@@ -55,7 +60,13 @@ describe("The update method", function () {
 
 });
 
-describe("The promise returned by the update method", function () {
+describe("Unit suite - The promise returned by the update method", function () {
+
+    var patches = [{
+        op: "add",
+        path: "/prop",
+        value: "value"
+    }];
 
     it("should be rejected if the remote argument `documentId` is not a string", function () {
         return methods.update().should.be.rejectedWith(MW.Error, {
@@ -73,11 +84,11 @@ describe("The promise returned by the update method", function () {
 
     it("should be rejected if no document with the given id is found", function () {
         var collection = {
-            db: {
+            dbCollection: {
                 findOne: R.always(null)
             }
         };
-        return methods.update(collection, "", []).should.be.rejectedWith(MW.Error, {
+        return methods.update(collection, "", patches).should.be.rejectedWith(MW.Error, {
             code: 404,
             message: "Document not found"
         });
@@ -88,11 +99,11 @@ describe("The promise returned by the update method", function () {
             runValidationRules: R.always(BPromise.reject(
                 new MW.Error(499, "Error message")
             )),
-            db: {
+            dbCollection: {
                 findOne: R.always({})
             }
         };
-        return methods.update(collection, "", []).should.be.rejectedWith(MW.Error, {
+        return methods.update(collection, "", patches).should.be.rejectedWith(MW.Error, {
             code: 499,
             message: "Error message"
         });
@@ -101,14 +112,14 @@ describe("The promise returned by the update method", function () {
     it("should be rejected if updating fails", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 findOne: R.always({}),
                 update: R.always(BPromise.reject(
                     new MW.Error(599, "Update error")
                 ))
             }
         };
-        return methods.update(collection, "", []).should.be.rejectedWith(MW.Error, {
+        return methods.update(collection, "", patches).should.be.rejectedWith(MW.Error, {
             code: 599,
             message: "Update error"
         });
@@ -117,12 +128,12 @@ describe("The promise returned by the update method", function () {
     it("should be resolved with null if nothing fails", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 findOne: R.always({}),
                 update: R.always(BPromise.resolve())
             }
         };
-        return methods.update(collection, "", [])
+        return methods.update(collection, "", patches)
             .then(function (result) {
                 (result === null).should.equal(true);
             });

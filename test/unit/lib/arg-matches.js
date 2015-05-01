@@ -3,7 +3,7 @@ var t      = require("tcomb");
 
 var argMatches = require("lib/arg-matches.js");
 
-describe("The argMatches function", function () {
+describe("Unit suite - The argMatches function", function () {
 
     it("should return true the argument is of the correct type", function () {
         argMatches(t.Str, "I'm a string").should.equal(true);

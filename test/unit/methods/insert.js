@@ -6,7 +6,7 @@ var sinon    = require("sinon");
 
 var methods = require("methods");
 
-describe("The insert method", function () {
+describe("Unit suite - The insert method", function () {
 
     it("should return a promise", function () {
         var promise = methods.insert();
@@ -29,28 +29,28 @@ describe("The insert method", function () {
     it("should give the document a random _id if it doesn't have one", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 insert: sinon.stub().returns(BPromise.resolve())
             }
         };
         return methods.insert(collection, {})
             .then(function () {
-                var insertedDocument = collection.db.insert.firstCall.args[0];
+                var insertedDocument = collection.dbCollection.insert.firstCall.args[0];
                 insertedDocument._id.should.be.a.String;
                 insertedDocument._id.length.should.equal(32);
             });
     });
 
-    it("should call db.insert with the new document", function () {
+    it("should call dbCollection.insert with the new document", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 insert: sinon.stub().returns(BPromise.resolve())
             }
         };
         return methods.insert(collection, {_id: "_id", a: 1})
             .then(function () {
-                collection.db.insert.calledWith({
+                collection.dbCollection.insert.calledWith({
                     _id: "_id",
                     a: 1
                 }).should.equal(true);
@@ -59,7 +59,7 @@ describe("The insert method", function () {
 
 });
 
-describe("The promise returned by the insert method", function () {
+describe("Unit suite - The promise returned by the insert method", function () {
 
     it("should be rejected if the remote argument `newDocument` is not an object", function () {
         return methods.insert().should.be.rejectedWith(MW.Error, {
@@ -83,7 +83,7 @@ describe("The promise returned by the insert method", function () {
     it("should be rejected if inserting fails", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 insert: R.always(BPromise.reject(
                     new MW.Error(599, "Insert error")
                 ))
@@ -98,7 +98,7 @@ describe("The promise returned by the insert method", function () {
     it("should be resolved with null if nothing fails", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 insert: R.always(BPromise.resolve())
             }
         };

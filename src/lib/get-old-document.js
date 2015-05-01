@@ -7,7 +7,7 @@ var ensure = require("./ensure.js");
 module.exports = function getOldDocument (collection, documentId) {
     return BPromise.resolve()
         .then(function () {
-            return collection.db.findOne({
+            return collection.dbCollection.findOne({
                 _id: documentId
             });
         })

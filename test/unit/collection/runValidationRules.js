@@ -5,7 +5,7 @@ var sinon    = require("sinon");
 
 var Collection = require("collection");
 
-describe("The runValidationRules method", function () {
+describe("Unit suite - The runValidationRules method", function () {
 
     it("should return a promise", function () {
         var instance = {
@@ -81,7 +81,7 @@ describe("The runValidationRules method", function () {
 
 });
 
-describe("The promise returned by the runValidationRules method", function () {
+describe("Unit suite - The promise returned by the runValidationRules method", function () {
 
     it("should be fulfilled if all validation rules return either a value or an eventually fulfilled promise", function () {
         var rule_0 = sinon.stub().returns(true);

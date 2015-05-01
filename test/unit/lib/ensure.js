@@ -2,7 +2,7 @@ var should = require("should");
 
 var ensure = require("lib/ensure.js");
 
-describe("The ensure function", function () {
+describe("Unit suite - The ensure function", function () {
 
     var error = new Error();
 

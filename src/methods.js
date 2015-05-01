@@ -24,7 +24,7 @@ exports.insert = function insert (collection, newDocument) {
         })
         .then(function () {
             newDocument._id = newDocument._id || randomId();
-            return collection.db.insert(newDocument);
+            return collection.dbCollection.insert(newDocument);
         })
         .then(R.always(null));
 };
@@ -51,7 +51,7 @@ exports.update = function update (collection, documentId, patches) {
                 .return(newDocument);
         })
         .then(function (newDocument) {
-            return collection.db.update({
+            return collection.dbCollection.update({
                 _id: documentId
             }, {
                 $set: R.omit(["_id"], newDocument)
@@ -76,7 +76,7 @@ exports.remove = function update (collection, documentId) {
                 .runValidationRules(this, "remove", oldDocument, null);
         })
         .then(function () {
-            return collection.db.remove({
+            return collection.dbCollection.remove({
                 _id: documentId
             });
         })

@@ -4,7 +4,7 @@ var sinon  = require("sinon");
 
 var Collection = require("collection");
 
-describe("The attachMethods method", function () {
+describe("Unit suite - The attachMethods method", function () {
 
     it("should attach methods to the collection's mw instance", function () {
         var instance = {

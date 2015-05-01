@@ -3,7 +3,7 @@ var should = require("should");
 
 var applyPatches = require("lib/apply-patches.js");
 
-describe("The applyPatches function", function () {
+describe("Unit suite - The applyPatches function", function () {
 
     it("should apply the supplied set of patches to the supplied object", function () {
         var oldObj = {

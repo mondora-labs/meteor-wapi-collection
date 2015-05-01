@@ -7,7 +7,7 @@ var sinon    = require("sinon");
 
 var methods = require("methods");
 
-describe("The remove method", function () {
+describe("Unit suite - The remove method", function () {
 
     it("should return a promise", function () {
         var promise = methods.remove();
@@ -18,7 +18,7 @@ describe("The remove method", function () {
     it("should run validation remove rules", function () {
         var collection = {
             runValidationRules: sinon.spy(),
-            db: {
+            dbCollection: {
                 findOne: R.always(BPromise.resolve({}))
             }
         };
@@ -30,17 +30,17 @@ describe("The remove method", function () {
             });
     });
 
-    it("should call db.remove to remove the old document", function () {
+    it("should call dbCollection.remove to remove the old document", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 findOne: R.always(BPromise.resolve({_id: "_id"})),
                 remove: sinon.stub().returns(BPromise.resolve())
             }
         };
         return methods.remove(collection, "_id")
             .then(function () {
-                collection.db.remove.calledWith({
+                collection.dbCollection.remove.calledWith({
                     _id: "_id"
                 }).should.equal(true);
             });
@@ -48,7 +48,7 @@ describe("The remove method", function () {
 
 });
 
-describe("The promise returned by the remove method", function () {
+describe("Unit suite - The promise returned by the remove method", function () {
 
     it("should be rejected if the remote argument `documentId` is not a string", function () {
         return methods.remove().should.be.rejectedWith(MW.Error, {
@@ -59,7 +59,7 @@ describe("The promise returned by the remove method", function () {
 
     it("should be rejected if no document with the given id is found", function () {
         var collection = {
-            db: {
+            dbCollection: {
                 findOne: R.always(null)
             }
         };
@@ -74,7 +74,7 @@ describe("The promise returned by the remove method", function () {
             runValidationRules: R.always(BPromise.reject(
                 new MW.Error(499, "Error message")
             )),
-            db: {
+            dbCollection: {
                 findOne: R.always({})
             }
         };
@@ -87,7 +87,7 @@ describe("The promise returned by the remove method", function () {
     it("should be rejected if removing fails", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 findOne: R.always({}),
                 remove: R.always(BPromise.reject(
                     new MW.Error(599, "Remove error")
@@ -103,7 +103,7 @@ describe("The promise returned by the remove method", function () {
     it("should be resolved with null if nothing fails", function () {
         var collection = {
             runValidationRules: R.always(BPromise.resolve()),
-            db: {
+            dbCollection: {
                 findOne: R.always({}),
                 remove: R.always(BPromise.resolve())
             }
