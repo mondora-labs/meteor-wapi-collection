@@ -50,7 +50,7 @@ Collection.prototype.initValidationRules = function initValidationRules () {
 *   Validation rules can either:
 *
 *   - throw or return a value (which is ignored)
-*   - return a promise which either gets fullfilled (with a value which is
+*   - return a promise which either gets fulfilled (with a value which is
 *     ignored) or rejected
 *
 *   If the rule returns a value (even undefined) or an eventually fulfilled
